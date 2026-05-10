@@ -60,7 +60,7 @@ export default function HomePage() {
 
             <div className="row mt-0 gy-3">
               {
-                recipeTerbaru.map(recipe => (
+                recipeTerbaru.slice(0,9).map(recipe => (
                   <div className="col-4" key={recipe.id}>
 
                     <FoodCard

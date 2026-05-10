@@ -5,12 +5,15 @@ import { useRecipe } from "../hooks/useRecipe";
 import FoodCard from "../components/FoodCard"
 
 
-export default function SearchPage(){
+export default function SearchPage() {
 
-  const {recipeSearchResult, searchForRecipes, formatDate} = useRecipe()
+  const { recipeSearchResult, searchForRecipes, formatDate } = useRecipe()
+
+  const [kategori, setKategori] = useState("Kategori")
+  const [urutan, setUrutan] = useState("Urutan")
 
   const [search, setSearch] = useState("");
-  return(
+  return (
     <>
       <div className="bg-custom-color min-vh-100">
         <div className="container-fluid pt-4">
@@ -24,7 +27,7 @@ export default function SearchPage(){
             <div className="col-12 d-flex gap-2">
               <div className="input-group">
 
-                <input 
+                <input
                   type="text"
                   className="form-control bg-search-bar-color border-0"
                   placeholder="Cari resep..."
@@ -35,8 +38,8 @@ export default function SearchPage(){
               </div>
 
               <button className="btn btn-custom d-flex align-items-center gap-3">
-                  <img src={WhiteSearchIcon} alt="search" />
-                  <p className="m-0" onClick={() => searchForRecipes(search)}>Cari</p>
+                <img src={WhiteSearchIcon} alt="search" />
+                <p className="m-0" onClick={() => searchForRecipes(search)}>Cari</p>
               </button>
             </div>
 
@@ -45,31 +48,31 @@ export default function SearchPage(){
               <p className="font-custom-color m-0 fw-medium">Filter:</p>
 
               <div className="dropdown">
-                <button 
+                <button
                   className="btn bg-search-bar-color dropdown-toggle"
                   data-bs-toggle="dropdown"
                 >
-                  Kategori
+                  {kategori}
                 </button>
 
                 <ul className="dropdown-menu">
-                  <li><button className="dropdown-item">Tanggal</button></li>
-                  <li><button className="dropdown-item">Kalori</button></li>
-                  <li><button className="dropdown-item">Like</button></li>
+                  <li><button className="dropdown-item" onClick={() => setKategori("Tanggal")}>Tanggal</button></li>
+                  <li><button className="dropdown-item" onClick={() => setKategori("Kalori")}>Kalori</button></li>
+                  <li><button className="dropdown-item" onClick={() => setKategori("Like")}>Like</button></li>
                 </ul>
               </div>
 
               <div className="dropdown">
-                <button 
+                <button
                   className="btn bg-search-bar-color dropdown-toggle"
                   data-bs-toggle="dropdown"
                 >
-                  Urutan
+                  {urutan}
                 </button>
 
                 <ul className="dropdown-menu">
-                  <li><button className="dropdown-item">Descending</button></li>
-                  <li><button className="dropdown-item">Ascending</button></li>
+                  <li><button className="dropdown-item" onClick={() => setUrutan("Descending")}>Descending</button></li>
+                  <li><button className="dropdown-item" onClick={() => setUrutan("Ascending")}>Ascending</button></li>
                 </ul>
               </div>
 
@@ -82,10 +85,12 @@ export default function SearchPage(){
                 <div className="col-4" key={recipe.id}>
 
                   <FoodCard
+                    id={recipe.id}
                     name={recipe.title}
                     userName={recipe.user.name}
                     calCount={recipe.calories}
                     likeCount={recipe.likes_count}
+                    initialIsLiked={recipe.is_liked}
                     date={formatDate(recipe.created_at)}
 
                   />
