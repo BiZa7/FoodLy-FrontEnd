@@ -33,9 +33,9 @@ export function useRecipe() {
     fetchData()
   }, [])
 
-  async function searchForRecipes(nameOfRecipe) {
+  async function searchForRecipes(nameOfRecipe, kategoriSearch, sortSearch) {
     try {
-      const data = await searchRecipes(nameOfRecipe)
+      const data = await searchRecipes(nameOfRecipe, kategoriSearch.toLowerCase(), sortSearch.toLowerCase())
       setRecipeSearchResult(data)
     } catch (error) {
       console.error(error)

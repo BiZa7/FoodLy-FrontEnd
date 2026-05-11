@@ -5,10 +5,12 @@ export const getRecipes = async () => {
   return response.data.data
 }
 
-export const searchRecipes = async (name) => {
+export const searchRecipes = async (name, kategori, sort) => {
   const response = await FoodlyApiClient.get("/recipes", {
     params: {
-      search: name
+      search: name,
+      kategori: kategori,
+      sort: sort
     }
   })
   return response.data.data

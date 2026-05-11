@@ -39,7 +39,7 @@ export default function SearchPage() {
 
               <button className="btn btn-custom d-flex align-items-center gap-3">
                 <img src={WhiteSearchIcon} alt="search" />
-                <p className="m-0" onClick={() => searchForRecipes(search)}>Cari</p>
+                <p className="m-0" onClick={() => searchForRecipes(search, kategori, urutan)}>Cari</p>
               </button>
             </div>
 
